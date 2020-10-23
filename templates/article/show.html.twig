@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'public/layout.html.twig' %}
 
 {% block title %}Article{% endblock %}
 
@@ -25,6 +25,23 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="row">
+        {% for other_article in articles %}
+            {% if other_article.id is not same as(article.id) %}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="full news_blog">
+                        <img class="img-responsive" src="{{ asset('images/b'~ loop.index ~'.png') }}" alt="#" />
+                        <div class="overlay">><a class="main_bt transparent" href="{{ path('article_show', { 'id' : other_article.id }) }}">Voir</a></div>
+                        <div class="blog_details">
+                            <h3>{{ other_article.title }}</h3>
+                            <p>pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
     <a href="{{ path('article_index') }}">back to list</a>
 

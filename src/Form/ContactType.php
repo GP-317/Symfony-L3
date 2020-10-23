@@ -2,27 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleType extends AbstractType
+class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content')
-            ->add('created')
-            ->add('subtitle')
+            ->add('Nom')
+            ->add('Email')
+            ->add('Objet')
+            ->add('Message')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Contact::class,
         ]);
     }
 }
