@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Welcome!{% endblock %}
 
 {% block layout %}
+
 
     <div class="section first">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    
                     {% block body %}{% endblock %}
                 </div>
             </div>
@@ -201,7 +210,7 @@
                                     <li><a href="exchange.html">> Exchange</a></li>
                                     <li><a href="services.html">> Services</a></li>
                                     <li><a href="new.html">> New</a></li>
-                                    <li><a href="{{ path('contact') }}">> Contact</a></li>
+                                    <li><a href="{{ path('contact_new') }}">> Contact</a></li>
                                 </ul>
                             </div>
                         </div>

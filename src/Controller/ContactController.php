@@ -15,18 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ContactController extends AbstractController
 {
-    /**
-     * @Route("/", name="contact_index", methods={"GET"})
-     */
-    public function index(ContactRepository $contactRepository): Response
-    {
-        return $this->render('contact/index.html.twig', [
-            'contacts' => $contactRepository->findAll(),
-        ]);
-    }
+
+    
 
     /**
-     * @Route("/new", name="contact_new", methods={"GET","POST"})
+     * @Route("/", name="contact_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -38,8 +31,9 @@ class ContactController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
+            $this->addFlash('success', 'Message envoyé avec succès !');
 
-            return $this->redirectToRoute('contact_index');
+            return $this->redirectToRoute('test_entity_index');
         }
 
         return $this->render('contact/new.html.twig', [
