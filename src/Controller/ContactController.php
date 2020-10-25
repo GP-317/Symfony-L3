@@ -29,6 +29,10 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            //Initialisation de la date au jour même
+            $contact->setCreated(new \DateTime());
+            
             $entityManager->persist($contact);
             $entityManager->flush();
             $this->addFlash('success', 'Message envoyé avec succès !');
