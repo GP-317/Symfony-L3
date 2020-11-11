@@ -46,15 +46,14 @@ class HomepageController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="homepage_show", methods={"GET"})
-     */
-    public function show(Homepage $homepage): Response
+
+    public function show(HomepageRepository $homepageRepository): Response
     {
         return $this->render('homepage/show.html.twig', [
-            'homepage' => $homepage,
+            'homepage' => $homepageRepository->findAll()[0],
         ]);
     }
+
 
     /**
      * @Route("admin/homepage/{id}/edit", name="homepage_edit", methods={"GET","POST"})
