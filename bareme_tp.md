@@ -20,7 +20,6 @@ Vous trouverez ci-dessous les points à remplir pour obtenir un maximum de point
     * Navigation (_Liens fonctionnels_) 
         +   Bannière / Entête / Footer
         +   Pages des articles
-        +   Pages des offres
         +   Page de contact
     * Espaces Actualités
         - Administration (_Création/édition/suppression d'un article_)
@@ -29,13 +28,9 @@ Vous trouverez ci-dessous les points à remplir pour obtenir un maximum de point
         - Administration (_Liste des demandes de contact_)
         - Formulaire (_Formulaire de demande de contact fonctionnel / Message de confirmation suite à la demande_)
     * Page d'accueil
-    
         - Administration (_Création/Modification de la page d'accueil_)
         - Espace public (_Intégration de la page d'accueil créée en tant que page d'accueil du site_)
-    * Page des offres 
-        - Administration (_Création / édition / suppression_)
-        - Espace public (_Liste des offres / Bouton de souscription à une offre - qui ne fonctionne pas pour le moment_)
-    * Authentification (_Inscription / Connexion / Déconnexion / Espace utilisateur_ )
+    * Authentification (_Inscription / Connexion / Déconnexion_ )
 
 * Qualité du code
     - Pas de code inutile en commentaire

@@ -129,7 +129,7 @@ class ContactType extends AbstractType
 ```
 
 Pour embellir la page de demande de contact :
-* Reprendre **le HTML** de la page qui liste les articles
+* Reprendre le HTML du titre de la page qui liste les articles
 * Supprimer le lien qui permet d'accéder à la liste des demandes `<a href="{{ path('contact_index') }}">back to list</a>`  
 
 ```twig
