@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'public/layout.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
@@ -38,5 +38,8 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
+    <div class="alert alert-info my-3">
+        <p>Vous n'avez pas de compte ? <a href="{{ path('app_register') }}"><button class="btn btn-lg btn-primary" type="submit">Inscrivez-vous !</button></a> </p>
+    </div>
 </form>
 {% endblock %}
