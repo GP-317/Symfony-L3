@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/homepage")
- */
+
 class HomepageController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage_index", methods={"GET"})
+     * @Route("/admin/homepage", name="homepage_index", methods={"GET"})
      */
     public function index(HomepageRepository $homepageRepository): Response
     {
@@ -26,7 +24,7 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="homepage_new", methods={"GET","POST"})
+     * @Route("admin/homepage/new", name="homepage_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -59,7 +57,7 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="homepage_edit", methods={"GET","POST"})
+     * @Route("admin/homepage/{id}/edit", name="homepage_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Homepage $homepage): Response
     {
@@ -79,7 +77,7 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="homepage_delete", methods={"DELETE"})
+     * @Route("admin/homepage/{id}", name="homepage_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Homepage $homepage): Response
     {
