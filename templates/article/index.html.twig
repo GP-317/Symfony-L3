@@ -1,6 +1,6 @@
 {% extends 'public/layout.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Articles{% endblock %}
 
 {% block body %}
 
@@ -29,6 +29,9 @@
                           </div>
                   {% endfor %}
               </div>
+
+            <a class="main_bt" href="{{ path('article_new') }}">Créer un nouvel article</a>
+
           </div>
       </div>
 

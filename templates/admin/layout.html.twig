@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Hello {{app.user.username}} !{% endblock %}
 
 {% block logo %}
     <a class="navbar-brand" href="{{ path('admin')}}">
