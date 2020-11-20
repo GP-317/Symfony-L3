@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ContactRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\UserRepository;
 
 
     /**
@@ -33,4 +34,7 @@ class AdminController extends AbstractController
             'contacts' => $contactRepository->findAll(),
         ]);
     }
+
+
+
 }

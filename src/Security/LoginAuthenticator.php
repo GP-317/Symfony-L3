@@ -74,6 +74,12 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
+        // "$user->getBlocked()" retourne true ou false
+        // Renvoie un message d'erreur si l'utilisateur est bloqué (condition vérifée)
+        if ($user->getBlocked()) {
+            throw new CustomUserMessageAuthenticationException('Ce compte utilisateur est bloqué.');
+        }
+
         return $user;
     }
 
