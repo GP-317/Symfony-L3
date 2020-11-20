@@ -27,12 +27,11 @@ Le livrable doit être exempt de bugs, comprendre le maximum de fonctionnalités
 0. Navigation
 1. Actualités
 2. Offres
-3. Résidences
-4. Contact
-5. Authentification
-6. Espace administration / Gestion des utilisateurs
-7. Espace client / Compte client 
-8. Espace communication / rédaction du contenu
+3. Contact
+4. Authentification
+5. Espace administration / Gestion des utilisateurs
+6. Espace client / Compte client 
+7. Espace communication / rédaction du contenu
 
 ##### Navigation 
 
@@ -88,22 +87,6 @@ Le livrable doit être exempt de bugs, comprendre le maximum de fonctionnalités
 > * Téléphone
 > * Mail 
 
-> Une validation par email du compte utilisateur doit être faite pour signaler la souscription dans l'espace communication
-
-
-##### Résidences
-
-> Le référentiel des résidences est disponible sur un endpoint fournit par le service informatique
-
-> Le chargement du référentiel peut être déclenché via une action dans l'espace d'administration
-
-> Il est possible de rechercher une résidence à partir d'une ville
-
-> La liste des résidences doit être paginée, tous les 10 éléments, et triée par ordre de popularité
-
-> Les images desktop/mobile de chaque résidence sont éditables via l'interface d'admin et de communication
-
-> Une image par défaut peut être fournie si le point ci-dessus n'est pas complétée. 
 
 ##### Contact
 
@@ -179,3 +162,7 @@ Numéro client généré automatiquement
 Les champs facultatifs à l'inscription doivent être obligatoirement saisis pour souscrire à une offre
 
 Partie "Contact" (personne à contacter / médecin traitant / membres de la famille) 
+
+###### Compte agent
+
+Les agents doivent pouvoir consulter la liste des souscriptions aux offres, et changer le statut des offres. 
