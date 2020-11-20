@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/article")
+ * @Route("/")
  */
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/", name="article_index", methods={"GET"})
+     * @Route("/article", name="article_index", methods={"GET"})
      */
     public function index(ArticleRepository $articleRepository): Response
     {
@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="article_new", methods={"GET","POST"})
+     * @Route("admin/article/new", name="article_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,17 +49,18 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="article_show", methods={"GET"})
+     * @Route("/article/{id}", name="article_show", methods={"GET"})
      */
-    public function show(Article $article): Response
+    public function show(Article $article, ArticleRepository $articleRepository): Response
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'articles' => $articleRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
+     * @Route("/admin/article/{id}/edit", name="article_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Article $article): Response
     {
@@ -79,7 +80,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="article_delete", methods={"DELETE"})
+     * @Route("/admin/{id}", name="article_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Article $article): Response
     {
