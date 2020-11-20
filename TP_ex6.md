@@ -55,6 +55,17 @@ Vous pouvez utiliser le type de champ [ChoiceType](https://symfony.com/doc/curre
 > On peut envisager qu'un utilisateur ait plusieurs rôles, mais ce n'est pas une obligation.
 >
 > L'entité `User` a déjà une propriété `roles`, qui est un tableau, donc **ne créez pas une entité `Role`.** ou une nouvelle propriété.
+> 
+
+Vous aurez besoin d'ajouter les attributs `expanded` et `multiple` aux options du champ "roles" : 
+```
+    ->add('roles', ChoiceType::class, [
+            'choices'  => [
+                // À compléter
+            ],
+            'expanded' => true,
+            'multiple' => true
+```
 
 ![Admin Toolbar](imgs/edit_user.PNG)
 ___
