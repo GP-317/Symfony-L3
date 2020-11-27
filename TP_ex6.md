@@ -83,20 +83,22 @@ Cette propriété doit être de type `boolean`.
 
 #### Modifier la création d'un utilisateur
 
-C'est dans la classe `RegistrationController` qu'est créé un utilisateur.
+Étant donné que nous venons d'ajouter un nouvelle propriété à l'entité `User`, qui doit valoir par défaut `false`, nous devons modifier la création de l'utilisateur.
 
-Si la propriété `blocked` que vous avez créé est `NOT NULL`, pensez à modifier `RegistrationController` pour mettre manuellement à jour la propriété `blocked` de l'utilisateur créé.
+Pour cela, il faut modifier la fonction native `__construct` de l'entité `User` : 
+
 ```php
-public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+class User implements UserInterface
 {
-    //...
-
-    $user->setBlocked(false);
-    $entityManager->persist($user);
-    $entityManager->flush();
-
-    //...
+    // propriétés 
+    
+    public function __construct(){
+        $this->blocked = false;
+    }
+    
+    // getters & setters
 ```   
+> Si vous avez ajouter un autre nom que `blocked` comme propriété, adaptez l'exemple ci-dessus.
 
 #### Vérifier si un utilisateur est bloqué
 
