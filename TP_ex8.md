@@ -38,7 +38,7 @@ L'entité `Souscription` doit avoir la propriété suivante :
 ### Ajout des relations
 > Comme décrit dans le support de cours, il faut ajouter des nouvelles relations entre ces nouvelles entités
 * Ajouter une relation `OneToMany` de l'entité `User` vers `Souscription`
-* Ajouter une relation `OneToMany` de l'entité `Souscription` vers `Offer`
+* Ajouter une relation `ManyToOne` de l'entité `Souscription` vers `Offer`
 
 > Vous n'êtes pas forcément obligé de créer les relations dans _ce sens_. 
 > _La relation `OneToMany` peut être remplacée par la relation `ManyToOne` en inversant les entités._
