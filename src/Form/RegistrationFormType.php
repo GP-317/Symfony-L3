@@ -11,14 +11,72 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
+            ->add('Nom', null, [
+                'label' => "Nom",
+                'required' => true
+            ])
+
+            ->add('Prenom', null, [
+                'label' => "Prénom",
+                'required' => true
+            ])
+
+            ->add('Civilite', null, [
+                'label' => "Civilité",
+                'required' => true
+            ])
+
+            ->add('dateNaissance', BirthdayType::class, [
+                'label' => "Date de naissance",
+                'required' => true,
+                'format' => 'dd-MM-yyyy',
+                'input' => 'string',
+            ])
+
+            ->add('noTelephone', null, [
+                'label' => "N° de Téléphone",
+                'required' => false
+            ])
+
+            ->add('Ville', null, [
+                'label' => "Ville",
+                'required' => false
+            ])
+
+            ->add('codePostal', null, [
+                'label' => "Code Postal",
+                'required' => false
+            ])
+
+            ->add('Pays', null, [
+                'label' => "Pays",
+                'required' => false
+            ])
+
+            ->add('noSecu', null, [
+                'label' => "Numéro de Sécurité Sociale",
+                'required' => false
+            ])
+
+
+
+            ->add('email', EmailType::class, [
+                'label' => "Email",
+                'required' => true
+            ])
+
+
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Accepter les CGU',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -26,6 +84,8 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

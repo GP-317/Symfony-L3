@@ -41,6 +41,51 @@ class User implements UserInterface
      */
     private $blocked;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Civilite;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $dateNaissance;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $noTelephone;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Ville;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $codePostal;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Pays;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $noSecu;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +172,114 @@ class User implements UserInterface
     public function setBlocked(bool $blocked): self
     {
         $this->blocked = $blocked;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->Nom;
+    }
+
+    public function setNom(?string $Nom): self
+    {
+        $this->Nom = $Nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->Prenom;
+    }
+
+    public function setPrenom(?string $Prenom): self
+    {
+        $this->Prenom = $Prenom;
+
+        return $this;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->Civilite;
+    }
+
+    public function setCivilite(?string $Civilite): self
+    {
+        $this->Civilite = $Civilite;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?string
+    {
+        return $this->dateNaissance;
+    }
+
+    public function setDateNaissance(?string $dateNaissance): self
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    public function getNoTelephone(): ?string
+    {
+        return $this->noTelephone;
+    }
+
+    public function setNoTelephone(?string $noTelephone): self
+    {
+        $this->noTelephone = $noTelephone;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->Ville;
+    }
+
+    public function setVille(?string $Ville): self
+    {
+        $this->Ville = $Ville;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?string
+    {
+        return $this->codePostal;
+    }
+
+    public function setCodePostal(?string $codePostal): self
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->Pays;
+    }
+
+    public function setPays(?string $Pays): self
+    {
+        $this->Pays = $Pays;
+
+        return $this;
+    }
+
+    public function getNoSecu(): ?string
+    {
+        return $this->noSecu;
+    }
+
+    public function setNoSecu(?string $noSecu): self
+    {
+        $this->noSecu = $noSecu;
 
         return $this;
     }
