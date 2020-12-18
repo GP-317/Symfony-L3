@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{app.user.username}} !{% endblock %}
+{% block title %}Espace client{% endblock %}
 
 {% block logo %}
     <a class="navbar-brand" href="{{ path('admin')}}">
@@ -19,7 +19,7 @@
 {% block navbar_links %}
     <li><a class="nav-link active" href="{{ path('article_index') }}">Actualités</a></li>
     <li><a class="nav-link active" href="{{ path('contact_index') }}">Demandes de contact</a></li>
-    <li><a class="nav-link active" href="{{ path('adm_user_index') }}">Utilisateurs</a></li>
+    <li><a class="nav-link active" href="{{ path('user_index') }}">Utilisateurs</a></li>
     <li><a class="nav-link active" href="{{ path('homepage_index') }}">Pages d'accueil</a></li>
 {% endblock %}
 
@@ -30,7 +30,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    {% block body %}{% endblock %}
+                    {% block body %}
+                    
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Nom</th>
+                                <td>{{ app.user.nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prénom</th>
+                                <td>{{ app.user.prenom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ app.user.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    {% endblock %}
                 </div>
             </div>
         </div>

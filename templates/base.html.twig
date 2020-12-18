@@ -37,7 +37,7 @@
                                 <a href="mailto:exchang@gmail.com"><img src="{{ asset('images/mail_icon.png') }}" alt="#"/>exchang@gmail.com</a>
                             </li>
                             <li>
-                                <a href="tel:exchang@gmail.com"><img src="{{ asset('images/phone_icon.png') }}" alt="#"/>+7123569847</a>
+                                <a href="tel:exchang@gmail.com"><img src="{{ asset('images/phone_icon.png') }}" alt="#"/> +7123456789 </a>
                             </li>
                             <li>
                                 {% if app.user %}
@@ -77,6 +77,7 @@
                                         <li><a class="nav-link" href="services.html">Services</a></li>
                                         <li><a class="nav-link" href="{{ path('article_index') }}">Actualités</a></li>
                                         <li><a class="nav-link" href="{{ path('contact_new') }}">Contact</a></li>
+                                        <li><a class="navlink" href="{{ path('user_index') }}">Espace Client</a></li>
                                     {% endblock %}
                                 </ul>
                             </div>
