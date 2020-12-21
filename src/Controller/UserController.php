@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Souscription;
 use App\Form\UserType;
 use App\Form\UserAdminType;
 use App\Form\UserTypeClient;
@@ -61,6 +62,19 @@ class UserController extends AbstractController
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/mes-souscriptions", name="user_souscriptions")
+     */
+    public function indexSouscription(UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+
+        return $this->render('espace-client/souscription.html.twig', [
+            'souscription' => $user->getSouscription(),
         ]);
     }
 
