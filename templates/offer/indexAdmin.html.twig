@@ -1,0 +1,41 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Offer index{% endblock %}
+
+{% block body %}
+    <h1>Offer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Intro</th>
+                <th>Offre</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offer in offers %}
+            <tr>
+                <td>{{ offer.id }}</td>
+                <td>{{ offer.titre }}</td>
+                <td>{{ offer.intro }}</td>
+                <td>{{ offer.offre }}</td>
+                <td>{{ offer.prix }}</td>
+                <td>
+                    <a href="{{ path('adm_offer_show', {'id': offer.id}) }}">show</a>
+                    <a href="{{ path('adm_offer_edit', {'id': offer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('adm_offer_new') }}">Create new</a>
+{% endblock %}

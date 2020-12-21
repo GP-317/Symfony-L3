@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ContactRepository;
+use App\Repository\OfferRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\UserRepository;
@@ -50,6 +51,16 @@ class AdminController extends AbstractController
     {
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/offer", name="adm_offer_index", methods={"GET"})
+     */
+    public function indexOffer(OfferRepository $offerRepository): Response
+    {
+        return $this->render('offer/indexAdmin.html.twig', [
+            'offers' => $offerRepository->findAll(),
         ]);
     }
 
@@ -225,5 +236,80 @@ class AdminController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Offres ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+
+
+    /**
+     * @Route("/offer/new", name="adm_offer_new", methods={"GET","POST"})
+     */
+    public function newOffer(Request $request): Response
+    {
+        $offer = new Offer();
+        $form = $this->createForm(OfferType::class, $offer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($offer);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('adm_offer_index');
+        }
+
+        return $this->render('offer/newAdmin.html.twig', [
+            'offer' => $offer,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/offer/{id}", name="adm_offer_delete", methods={"DELETE"})
+     */
+    public function deleteOffer(Request $request, Offer $offer): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$offer->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($offer);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('adm_offer_index');
+    }
+
+    /**
+     * @Route("/offer/{id}", name="adm_offer_show", methods={"GET"})
+     */
+    public function showOffer(Offer $offer): Response
+    {
+        return $this->render('offer/showAdmin.html.twig', [
+            'offer' => $offer,
+        ]);
+    }
+
+    /**
+     * @Route("/offer/{id}/edit", name="adm_offer_edit", methods={"GET","POST"})
+     */
+    public function editOffer(Request $request, Offer $offer): Response
+    {
+        $form = $this->createForm(OfferType::class, $offer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('adm_offer_index');
+        }
+
+        return $this->render('offer/editAdmin.html.twig', [
+            'offer' => $offer,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+
+
+
 
 }
