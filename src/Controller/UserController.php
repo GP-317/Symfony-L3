@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserAdminType;
+use App\Form\UserTypeClient;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,19 +13,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\AdminController;
 
-/**
- * @Route("/mon-espace-client")
- */
+    /**
+    * @Route("/mon-espace-client")
+    */
 class UserController extends AbstractController
 {
 
     /**
-     * @Route("/", name="user_index", methods={"GET"})
-     */
-    public function index(UserRepository $userRepository): Response
+    * @Route("", name="user_home", methods={"GET","POST"})
+    */
+    public function index(UserRepository $userRepository, Request $request): Response
     {
-        return $this->render('espace-client/layout.html.twig', [
-            'user' => $userRepository->findAll(),
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser(); 
+
+        // Créer un formulaire lié à ce utilisateur
+        $form = $this->createForm(UserTypeClient::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+        }
+
+        return $this->render('espace-client/index.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 

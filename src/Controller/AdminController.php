@@ -11,6 +11,8 @@ use App\Repository\UserRepository;
 use App\Controller\UserController;
 use App\Entity\User;
 use App\Form\UserAdminType;
+use App\Form\HomepageType;
+use App\Entity\Homepage;
 
 
 // {"0":"ROLE_ADMIN","2":"ROLE_USER","3":"ROLE_AGENT"}
