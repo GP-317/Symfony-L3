@@ -32,6 +32,13 @@ class Souscription
      */
     private $offer;
 
+    public function __construct(User $user, Offer $offer)
+    {
+        $user = $this->user;
+        $offer = $this->offer;
+        $this->etat = 'En attente';
+    }
+
     public function getId(): ?int
     {
         return $this->id;
