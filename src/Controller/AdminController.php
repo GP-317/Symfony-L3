@@ -9,11 +9,12 @@ use App\Repository\OfferRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\UserRepository;
-use App\Controller\UserController;
 use App\Entity\User;
 use App\Form\UserAdminType;
 use App\Form\HomepageType;
 use App\Entity\Homepage;
+use App\Entity\Article;
+use App\Entity\Offer;
 
 
 // {"0":"ROLE_ADMIN","2":"ROLE_USER","3":"ROLE_AGENT"}

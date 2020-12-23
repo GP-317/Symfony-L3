@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\SouscriptionRepository;
 use Doctrine\ORM\Mapping as ORM;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=SouscriptionRepository::class)

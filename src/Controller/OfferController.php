@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UserRepository;
+use App\Entity\Souscription;
 
 /**
  * @Route("/offer")
@@ -60,25 +62,51 @@ class OfferController extends AbstractController
         ]);
     }
 
+    
     /**
-     * @Route("/{id}/edit", name="offer_edit", methods={"GET","POST"})
+     * @Route("/subscribing_to/{id}", name="subscribe_to_offer", methods={"GET"})
      */
-    public function edit(Request $request, Offer $offer): Response
+    public function subscribeToOffer(Offer $offer): Response
     {
-        $form = $this->createForm(OfferType::class, $offer);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($this->getUser()) {
 
-            return $this->redirectToRoute('offer_index');
+            $exists = false;
+            $user = $this->getUser();
+
+            if ($user->getVille() == "" || $user->getPays() == "" || $user->getNoSecu() == "" || $user->getCodePostal() == "" || $user->getNoTelephone() == "")
+            {
+                $this->addFlash('notice', 'Veuillez renseigner les champs manquants');
+                return $this->redirectToRoute('user_home');
+            } else
+            {
+                foreach ($user->getSouscription() as $subscription)
+                {
+                    if ($subscription->getOffer() == $offer)
+                    {
+                        $exists = true;
+                        $this->addFlash('warning', 'Vous avez déjà souscrit à cette offre !');
+                    }
+                }
+                if ($exists == false)
+                {
+                    $souscription = new Souscription($user, $offer);
+                    $user->addSouscription($souscription);
+                    $offer->addSouscription($souscription);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($souscription);
+                    $em->flush();
+                    return $this->render('espace-client/souscription.html.twig', [
+                        'souscription' => $user->getSouscription(),
+                    ]);
+                }
+            }
         }
 
-        return $this->render('offer/edit.html.twig', [
-            'offer' => $offer,
-            'form' => $form->createView(),
-        ]);
+        $this->addFlash('error', 'Vous devez être connecté pour souscrire à une offre !');
+        return $this->redirectToRoute('app_login');
     }
 
-    
+
+
 }

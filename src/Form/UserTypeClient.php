@@ -6,29 +6,50 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UserTypeClient extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Nom')
+        ->add('Nom', null, [
+            'label' => "Nom",
+        ])
 
-            ->add('Prenom')
+        ->add('Prenom', null, [
+            'label' => "Prénom",
+        ])
 
-            ->add('Civilite')
+        ->add('Civilite', null, [
+            'label' => "Civilité",
+        ])
 
-            ->add('dateNaissance')
+        ->add('dateNaissance', BirthdayType::class, [
+            'label' => "Date de naissance",
+            'format' => 'dd-MM-yyyy',
+            'input' => 'string',
+        ])
 
-            ->add('noTelephone')
+        ->add('noTelephone', null, [
+            'label' => "N° de Téléphone",
+        ])
 
-            ->add('Ville')
+        ->add('Ville', null, [
+            'label' => "Ville",
+        ])
 
-            ->add('codePostal')
+        ->add('codePostal', null, [
+            'label' => "Code Postal",
+        ])
 
-            ->add('Pays')
+        ->add('Pays', null, [
+            'label' => "Pays",
+        ])
 
-            ->add('noSecu')
+        ->add('noSecu', null, [
+            'label' => "Numéro de Sécurité Sociale",
+        ])
         ;
     }
 

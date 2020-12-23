@@ -2,32 +2,35 @@
 
 {% block title %}Espace client{% endblock %}
 
-{% block body %}
-    <h1>Souscriptions</h1>
+{% block layout %}
+    {% block body %}
+        <h1>Souscriptions</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Etat</th>
-                <th>User ID</th>
-                <th>Offer ID</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for souscription in souscriptions %}
-            <tr>
-                <td>{{ souscription.id }}</td>
-                <td>{{ souscription.etat }}</td>
-                <td>{{ souscription.user_id }}</td>
-                <td>{{ souscription.offer_id }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucune entrée trouvée</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        
 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Etat</th>
+                    <th>User ID</th>
+                    <th>Offer ID</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for souscription in souscriptions %}
+                <tr>
+                    <td>{{ souscription.id }}</td>
+                    <td>{{ souscription.etat }}</td>
+                    <td>{{ souscription.user_id }}</td>
+                    <td>{{ souscription.offer_id }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucune entrée trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
 {% endblock %}

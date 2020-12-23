@@ -2,40 +2,49 @@
 
 {% block title %}Offer index{% endblock %}
 
-{% block body %}
-    <h1>Offer index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Intro</th>
-                <th>Offre</th>
-                <th>Prix</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for offer in offers %}
-            <tr>
-                <td>{{ offer.id }}</td>
-                <td>{{ offer.titre }}</td>
-                <td>{{ offer.intro }}</td>
-                <td>{{ offer.offre }}</td>
-                <td>{{ offer.prix }}</td>
-                <td>
-                    <a href="{{ path('offer_show', {'id': offer.id}) }}">show</a>
-                    <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+{% block layout %}
+    {% block body %}
+    
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    {% endfor %}
+    
+        <h1>Offer index</h1>
 
-    <a href="{{ path('offer_new') }}">Create new</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Intro</th>
+                    <th>Offre</th>
+                    <th>Prix</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for offer in offers %}
+                <tr>
+                    <td>{{ offer.id }}</td>
+                    <td>{{ offer.titre }}</td>
+                    <td>{{ offer.intro }}</td>
+                    <td>{{ offer.offre }}</td>
+                    <td>{{ offer.prix }}</td>
+                    <td>
+                        <a href="{{ path('offer_show', {'id': offer.id}) }}">Voir</a>
+                        <a href="{{ path('subscribe_to_offer', {'id': offer.id}) }}">Souscrire</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
 {% endblock %}

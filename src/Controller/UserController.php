@@ -3,16 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Souscription;
 use App\Form\UserType;
-use App\Form\UserAdminType;
 use App\Form\UserTypeClient;
-use App\Repository\UserRepository;
+use App\Repository\SouscriptionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Controller\AdminController;
 
     /**
     * @Route("/mon-espace-client")
@@ -23,7 +20,7 @@ class UserController extends AbstractController
     /**
     * @Route("", name="user_home", methods={"GET","POST"})
     */
-    public function index(UserRepository $userRepository, Request $request): Response
+    public function index(Request $request): Response
     {
         // Récupérer l'utilisateur connecté
         $user = $this->getUser(); 
@@ -69,12 +66,12 @@ class UserController extends AbstractController
     /**
      * @Route("/mes-souscriptions", name="user_souscriptions")
      */
-    public function indexSouscription(UserRepository $userRepository): Response
+    public function indexSouscription(SouscriptionRepository $souscriptionRepository): Response
     {
         $user = $this->getUser();
 
         return $this->render('espace-client/souscription.html.twig', [
-            'souscription' => $user->getSouscription(),
+            'souscription' => $user->getSouscription()->findAll(),
         ]);
     }
 
