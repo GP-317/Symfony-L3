@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -66,6 +67,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *      pattern = "/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/",
+     *      message = "Veuillez rédiger un numéro de téléphone valide"
+     * )
      */
     private $noTelephone;
 
@@ -76,6 +81,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *      pattern = "/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/",
+     *      message = "Veuillez rédiger un code postal valide"
+     * )
      */
     private $codePostal;
 
@@ -86,6 +95,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *      pattern = "/^[12][0-9]{2}[0-1][0-9](2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}[0-9]{2}$/",
+     *      message = "Veuillez rédiger un numéro de sécurité sociale valide"
+     * )
      */
     private $noSecu;
 
